@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rozhodovac3000</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <div class="flex-center flex-column">
+          <div class="shadow-box main-box">
+            <h1>Rozhodovač 3000</h1>
+          </div>
+          <div id="dialogoverlay"></div>
+          <div id="dialogbox" class="shadow-box">
+              <div id="dialogboxbody"></div>
+              <div id="dialogboxfoot"></div>
+          </div>
+          <button onclick="promot.render('','changeText')" class="button">Jak zní otázka?</button>
+          <h2 id="question" class="shadow-box shadow-box--orange shadow-box--animation hidden"></h2>
+          <form id="js-form">
+            <input
+              autocomplete="off"
+              id="js-answer-input"
+              class="input"
+              type="text"
+              aria-label="Zadej novou odpoved"
+              placeholder="Sem napiš odpověď"
+              pattern="[a-zA-Z0-9-žěščřžýáíé-ŽĚŠČŘŽÝÁÍÉ ]+"
+              oninvalid="this.setCustomValidity('Používej pouze písmena a čísla, prosím.')"
+              onchange="this.setCustomValidity('')"
+            >
+          </form>
+          <ul id="js-answer-list"></ul>
+          <div class="empty-state">
+            <div class="shadow-box arrow_box">
+              <h3 class="empty-state__title"> Zadej, co chceš rozhodnout a stikni Enter</h3>
+            </div>
+          </div>
+          <button id="button" onclick="decideFnc()" class="button">
+            Vyber náhodnou odpověď
+          </button>
+            <h2 id="result" class="result shadow-box shadow-box--orange hidden"></h2>
+        </div>
+      </div>
+    </main>
+    <svg>
+      <defs>
+        <symbol id="delete-icon" viewBox="0 0 448 448">
+          <path
+            d="m224 0c-123.710938 0-224 100.289062-224 224s100.289062 224 224 224 224-100.289062 224-224c-.132812-123.65625-100.34375-223.867188-224-224zm124.449219 325.824219c4.15625 4.015625 5.828125 9.964843 4.363281 15.558593s-5.835938 9.964844-11.429688 11.429688-11.542968-.207031-15.558593-4.363281l-101.824219-101.824219-101.824219 101.824219c-6.277343 6.0625-16.257812 5.976562-22.429687-.195313s-6.257813-16.152344-.195313-22.429687l101.824219-101.824219-101.824219-101.824219c-4.15625-4.015625-5.828125-9.964843-4.363281-15.558593s5.835938-9.964844 11.429688-11.429688 11.542968.207031 15.558593 4.363281l101.824219 101.824219 101.824219-101.824219c6.277343-6.0625 16.257812-5.976562 22.429687.195313s6.257813 16.152344.195313 22.429687l-101.824219 101.824219zm0 0"
+            fill="#D80027"
+          />
+        </symbol>
+      </defs>
+    </svg>
+    <script src="script.js"></script>
+  </body>
+</html>
