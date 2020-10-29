@@ -27,7 +27,7 @@
               class="input"
               type="text"
               aria-label="Zadej novou odpoved"
-              placeholder="Sem napiš odpověď"
+              placeholder="Sem napiš volbu"
               pattern="[a-zA-Z0-9-žěščřžýáíé-ŽĚŠČŘŽÝÁÍÉ ]+"
               oninvalid="this.setCustomValidity('Používej pouze písmena a čísla, prosím.')"
               onchange="this.setCustomValidity('')"
@@ -40,7 +40,7 @@
             </div>
           </div>
           <button id="button" onclick="decideFnc()" class="button">
-            Vyber náhodnou odpověď
+            Rozhodni!
           </button>
             <h2 id="result" class="result shadow-box shadow-box--orange hidden"></h2>
         </div>
