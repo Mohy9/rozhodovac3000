@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,7 +18,17 @@
               <div id="dialogboxbody"></div>
               <div id="dialogboxfoot"></div>
           </div>
-          <button onclick="promot.render('','changeText')" class="button">Jak zní otázka?</button>
+          <input
+            autocomplete="off"
+            id="js-question-input"
+            class="input"
+            type="text"
+            aria-label="Jak zní otázka?"
+            placeholder="Jak zní otázka?"
+            pattern="[a-zA-Z0-9-žěščřžýáíé-ŽĚŠČŘŽÝÁÍÉ ]+"
+            oninvalid="this.setCustomValidity('Používej pouze písmena a čísla, prosím.')"
+            onchange="this.setCustomValidity('')"
+          >
           <h2 id="question" class="shadow-box shadow-box--orange shadow-box--animation hidden"></h2>
           <form id="js-form">
             <input
@@ -26,8 +36,8 @@
               id="js-answer-input"
               class="input"
               type="text"
-              aria-label="Zadej novou odpoved"
-              placeholder="Sem napiš volbu"
+              aria-label="Sem napiš odpověď"
+              placeholder="Sem napiš odpověď"
               pattern="[a-zA-Z0-9-žěščřžýáíé-ŽĚŠČŘŽÝÁÍÉ ]+"
               oninvalid="this.setCustomValidity('Používej pouze písmena a čísla, prosím.')"
               onchange="this.setCustomValidity('')"
@@ -39,7 +49,7 @@
               <h3 class="empty-state__title"> Zadej, co chceš rozhodnout a stikni Enter</h3>
             </div>
           </div>
-          <button id="button" onclick="decideFnc()" class="button">
+          <button id="button" onclick="decideFnc()" class="button button--disabled">
             Rozhodni!
           </button>
             <h2 id="result" class="result shadow-box shadow-box--orange hidden"></h2>

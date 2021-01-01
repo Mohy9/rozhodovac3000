@@ -1,37 +1,3 @@
-// custom prompt box with question
-function CustomPrompt() {
-  this.render = function (dialog, fctn) {
-    const winW = window.innerWidth;
-    const winH = window.innerHeight;
-    const dialogoverlay = document.getElementById("dialogoverlay");
-    const dialogbox = document.getElementById("dialogbox");
-    dialogoverlay.style.display = "block";
-    dialogoverlay.style.height = winH + "px";
-    dialogbox.style.left = winW / 2 - 560 * 0.5 + "px";
-    dialogbox.style.top = "10rem";
-    dialogbox.style.display = "block";
-    document.getElementById("dialogboxbody").innerHTML = dialog;
-    document.getElementById("dialogboxbody").innerHTML +=
-      '<br><input id="prompt_value1" autocomplete="off" class="input" type="text" aria-label="Zadej novou odpoved" placeholder="Sem napiš odpověď" pattern="[a-zA-Z0-9 ]+" value=" ?"/>';
-    document.getElementById("dialogboxfoot").innerHTML =
-      "<button onclick=\"promot.ok('" +
-      fctn +
-      '\')" class="button">OK</button> <button onclick="promot.cancel()" class="button">Zrušit</button>';
-  };
-  this.cancel = function () {
-    document.getElementById("dialogoverlay").style.display = "none";
-    document.getElementById("dialogbox").style.display = "none";
-  };
-  this.ok = function (fctn) {
-    const prompt_value1 = document.getElementById("prompt_value1").value;
-    window[fctn](prompt_value1);
-    document.getElementById("dialogoverlay").style.display = "none";
-    document.getElementById("dialogbox").style.display = "none";
-  };
-}
-
-const promot = new CustomPrompt();
-
 /*Geting Value*/
 function changeText(val) {
   document.getElementById("question").innerHTML = val;
@@ -87,8 +53,8 @@ function addanswerItem(text) {
   };
 
   answerItems.push(answerItem);
-  console.log(answerItem.text);
   renderAnswerItem(answerItem);
+  handleChange();
 }
 
 function deleteAnswerItem(key) {
@@ -103,6 +69,7 @@ function deleteAnswerItem(key) {
   // remove the answerItem item from the array by filtering it out
   answerItems = answerItems.filter((item) => item.id !== Number(key));
   renderAnswerItem(answerItem);
+  handleChange();
 }
 
 // Select the form element
@@ -139,4 +106,20 @@ function decideFnc() {
   let randomIndex = Math.floor(Math.random() * answerItems.length);
   result.innerHTML = answerItems[randomIndex].text.toUpperCase();
   click.classList.remove("hidden");
+}
+
+//event listens to question input
+const questionInput = document.getElementById("js-question-input");
+questionInput.addEventListener("input", handleChange);
+
+//fce which controls state of the button
+function handleChange() {
+  //does answerItems array contain more than 2 value && question input is not empty?
+  if (answerItems.length > 1 && questionInput.value !== "") {
+    document.getElementById("button").classList.remove("button--disabled");
+    document.getElementById("button").disabled = false;
+  } else {
+    document.getElementById("button").classList.add("button--disabled");
+    document.getElementById("button").disabled = true;
+  }
 }
